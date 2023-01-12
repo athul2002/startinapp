@@ -181,4 +181,49 @@ html, body {
 
 #cart {
   margin-top: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#total {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+#total div {
+  margin-right: 20px;
+}
+
+#delivery {
+  display: flex;
+  flex-direction: column;
+}
+
+#cart-items {
+  max-width: 900px;
+  width: 80%;
+}
+
+#cart-items table {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+#checkout {
+  background-color: #000;
+  color: #fff;
+  border-radius: 2px;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+}
+
+#modal {
+  max-height: 400px;
+  align-self: center;
+  justify-self: center;
+  border-radius: 20px;
 }

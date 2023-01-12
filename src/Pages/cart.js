@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import './cart.css'
+import Modal from 'react-modal';
 import axios from 'axios';
 
 function Cart({cart, setCart}) {
@@ -8,20 +9,33 @@ function Cart({cart, setCart}) {
   const [address, setAddress] = useState("")
   const [phone, setPhone] = useState("")
   const [add1, setAdd1] = useState("");
-  const [add2, setAdd2] = useState("");
+  const [add2, setAdd2] = useState("Kalam");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const placeOrder = async() => {
-    setAddress(add1.concat(add2));
-    console.log(address)
+    if(cart.length === 0) {
+      setError("*Your cart is empty!");
+      return;
+    }
+    if(!name || !add1 || !add2 || !phone) {
+      setError("*All fields are mandatory!");
+      return;
+    }
+    if(phone.length != 10 || phone.match(/^[0-9]+$/) == null) {
+      setError("*Invalid phone number!");
+      return;
+    }
+    setError("");
     
     const { data } = await axios.post('https://food-app-2ekh.onrender.com/api/order', {
       name: name,
       phoneNumber: phone,
-      address: address,
+      address: add1,
+      hostal: add2,
       orders: JSON.stringify(cart),
       payment: total,
-    })
-    console.log(data)
+    }).then(() => {setCart([]); setSuccess(true); setTimeout(() => window.location.href = '/', 1000);})
   }
 
   useEffect(() => {
@@ -41,68 +55,46 @@ function Cart({cart, setCart}) {
     <i class="fas fa-shopping-bag"></i>
   </div>
   <div id="checkout-page"> */}
-    {
-      cart.map((item) => {
-        return(<div className='cart-item'>
+{cart.length > 0 ? <>
+    <div id="cart-items">
         <table>
           <tr>
             <th>Item</th>
             <th>Rate</th>
             <th>Quantity</th>
             <th>Price</th>
-            <th onClick={() => {
-                let newArr = [...cart]
-                setCart(newArr.filter((e) => e.name != item.name));
-          }}>Remove</th>
+            <th></th>
+          </tr>
+          {cart.map((item) => {
+          return(
+            <tr>
+            <td>{item.name}</td>
+            <td>&#x20B9; {item.price}</td>
+            <td>{item.quantity}</td>
+            <td>&#x20B9; {item.totalPrice}</td>
+            <td onClick={() => {
+                  let newArr = [...cart]
+                  setCart(newArr.filter((e) => e.name !== item.name));
+            }}>Remove</td>
+          </tr>)})}
 
-          </tr>
-          <tr>
-            <td>Emil</td>
-            <td>Tobias</td>
-            <td>Linus</td>
-          </tr>
-          <tr>
-            <td>16</td>
-            <td>14</td>
-            <td>10</td>
-          </tr>
         </table>
-          <div>{item.name}</div>
-          <div>{item.price}</div>
-          <div>{item.quantity}</div>
-          <div>{item.totalPrice}</div>
-          <div onClick={() => {
-                let newArr = [...cart]
-                setCart(newArr.filter((e) => e.name != item.name));
-          }}>Remove</div>
-          </div>);
-{/* <div className="item">
-    <div className="item-detail">
-      <h5 className="item-title">{item.name}</h5>
-      <div className="item-cal">
-        <div>
-          <button className="minus"><i class="fas fa-minus"></i></button>
-          <span className="amount">{item.price}</span>
-          <button className="plus"><i class="fas fa-plus"></i></button>
-        </div>
-        <span className="price">&#x20B9; {item.price}</span>
-      </div>
-    </div>
-</div> */}
-        // );
-      })
-    }
-    <div><div>Total</div><div>$ {total}</div></div>
+
+    <div id="total"><div>Total</div><div>  &#x20B9;{total}</div></div>
+</div>
+            <div>
+    <div id="delivery">Provide your delivery details below</div>
     <input placeholder='Name' onChange={(e) => {setName(e.target.value)}}/>
-    <input placeholder='Address' onChange={(e) => {setAdd1(e.target.value)}}/>
-    <select onChange={(e) => {setAdd2(e.target.value)}}>
-      <option value='Kalam'>Kalam</option>
-      <option value='CVR'>CVR</option>
-      <option value='Aryabhatta'>Aryabhatta</option>
-      <option value='Aasima'>Aasima</option>
-      <option value='Other'>Other</option>
+    <input placeholder='Address (short description)' onChange={(e) => {setAdd1(e.target.value)}}/>
+    <select value={add2} onChange={(e) => {setAdd2(e.target.value)}}>
+      <option default value='Kalam' key='kalam'>Kalam</option>
+      <option value='CVR' key='cvr'>CVR</option>
+      <option value='Aryabhatta' key='aryabhatta'>Aryabhatta</option>
+      <option value='Aasima' key='aasima'>Aasima</option>
+      <option value='Other' key='other'>Other</option>
     </select>
-    <input type="text" placeholder='Phone' onChange={(e) => {setPhone(e.target.value)}}/>
+    <input type="tel" placeholder='Phone (+91)' maxLength={10} onChange={(e) => {setPhone(e.target.value)}}/>
+    </div>
     {/* <div class="item">
       <img class="item-image" src="https://goo.gl/NFcM8P"/>
       <div class="item-detail">
@@ -170,7 +162,12 @@ function Cart({cart, setCart}) {
     <button id="payment">PAY NOW</button>
   </div>
 </div> */}
-<div onClick={placeOrder}>Checkout</div>
+{error ? <div>{error}</div> : null}
+<div id="checkout" onClick={placeOrder}>Checkout</div> 
+<Modal isOpen={success} id="modal">
+<div>Your order has been successfully placed! Our delivery executive will contact you shortly. Enjoy your meal :&#41;</div>
+</Modal>
+</> : <div>Your cart is empty at the moment. Add items to the cart from the <a href="/">main page</a>.</div>}
     </div>
     
 
