@@ -20,8 +20,8 @@ function App() {
     <>
         {/* <header id="header"> */}
     <nav id="nav-bar">
-      <a class="nav-link" href="/">I.T.I. Dhaba</a>
-      <a class="nav-link" href="/cart">Cart</a>
+      <a class="nav-link" href="https://iti-dhaba.netlify.app">I.T.I. Dhaba</a>
+      <a class="nav-link" href="https://iti-dhaba.netlify.app/cart">Cart</a>
 
 
       {/* <Link to='/'>ITI Dhaba</Link>
