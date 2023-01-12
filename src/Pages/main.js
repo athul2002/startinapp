@@ -16,8 +16,8 @@ function Main({cart, setCart}) {
   return (
     // <div>main</div>
     <article id="foods">
-    <h2>List of currently available products:</h2>
     {loading ? <div>Loading...</div> : null}
+    {open ? 
       <div id="list">
         {items.map((item) => {
           return(<div className="products" id="prod1">
@@ -79,7 +79,7 @@ function Main({cart, setCart}) {
           <p><strong>&#x20B9; 69</strong></p>
           <img class="prod-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXArpyx6L308WLB32RddFOfIBlGDGSkFUGNq7tpoGqHf0xcYpgIg"/>
         </div> */}
-        </div>
+        </div> : <div>We are currently not taking any orders :&#40;. Please contact us for any queries/grievance addressals.</div>}
     </article>
   )
 }
