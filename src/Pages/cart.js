@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import './cart.css'
 import axios from 'axios';
+import GooglePayButton from '@google-pay/button-react'
 
 function Cart({cart, setCart}) {
   const [total, setTotal] = useState(0)
@@ -170,6 +171,52 @@ function Cart({cart, setCart}) {
     <button id="payment">PAY NOW</button>
   </div>
 </div> */}
+{/* <GooglePayButton 
+ environment='TEST'
+ paymentRequest={{
+  apiVersion: 2,
+  apiVersionMinor: 0,
+  allowedPaymentMethods: [
+    {
+      type: 'CARD',
+      parameters: {
+        allowedAuthMethods : ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+        allowedCardNetworks: ['MASTERCARD', 'VISA']
+      },
+      tokenizationSpecification: {
+        type: 'PAYMENT_GATEWAY',
+        parameters: {
+          gateway: 'example',
+          gatewayMercahantId: 'exampleGatewayMerchantId',
+        }
+      }
+    }
+  ],
+  merchantInfo: {
+    merchantId: '12345678901234567890',
+    merchantName: 'Demo Merchant'
+  },
+  transactionInfo: {
+    totalPriceStatus: 'FINAL',
+    totalPriceLabel: 'Total',
+    totalPrice: '1',
+    currencyCode: 'INR',
+    countryCode: 'IN'
+  },
+  shippingAddressRequired: true,
+  callbackIntents: ['PAYMENT_AUTHORIZATION'],
+ }}
+ onLoadPaymentData={paymentRequest => {
+  console.log('Success', paymentRequest)
+ }}
+ onPaymentAuthorized={paymentData => {
+  console.log('Payment Authorized success', paymentData)
+  return { transactionState: 'SUCCESS'}
+ }}
+ existingPaymentMethodRequired='false'
+ buttonColor='black'
+ buttonType='Buy'
+/> */}
 <div onClick={placeOrder}>Checkout</div>
     </div>
     
