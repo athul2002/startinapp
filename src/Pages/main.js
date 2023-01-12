@@ -28,7 +28,6 @@ function Main({cart, setCart}) {
               if (cart.find(e => e.name === item.name)) {
                 const index = cart.findIndex(e => e.name === item.name)
                 let newArr = [...cart]
-
                 newArr[index].quantity = newArr[index].quantity+1
                 newArr[index].totalPrice = newArr[index].quantity*newArr[index].price
                 setCart(newArr);

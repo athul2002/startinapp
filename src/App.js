@@ -19,14 +19,14 @@ function App() {
   return (
     <>
         {/* <header id="header"> */}
-    {/* <nav id="nav-bar"> */}
-      {/* <a class="nav-link" href="/">I.T.I. Dhaba</a>
-      <a class="nav-link" href="/cart">Cart</a> */}
+    <nav id="nav-bar">
+      <a class="nav-link" href="/">I.T.I. Dhaba</a>
+      <a class="nav-link" href="/cart">Cart</a>
 
 
       {/* <Link to='/'>ITI Dhaba</Link>
       <Link to='/cart'>Cart</Link>  */}
-    {/* </nav> */}
+    </nav>
       <BrowserRouter>
     <Routes>
       <Route path="/" element={<Main cart={cart} setCart={setCart} />}/>

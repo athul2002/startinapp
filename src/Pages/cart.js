@@ -32,7 +32,7 @@ function Cart({cart, setCart}) {
     setTotal(totalAmount);
   }, [cart])
   return (
-    <div>
+    <div id="cart">
       {/* <div id="title">02 CHECK OUT</div>
 <div id="container">
   <div id="header">
@@ -44,8 +44,32 @@ function Cart({cart, setCart}) {
     {
       cart.map((item) => {
         return(<div className='cart-item'>
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Rate</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th onClick={() => {
+                let newArr = [...cart]
+                setCart(newArr.filter((e) => e.name != item.name));
+          }}>Remove</th>
+
+          </tr>
+          <tr>
+            <td>Emil</td>
+            <td>Tobias</td>
+            <td>Linus</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>14</td>
+            <td>10</td>
+          </tr>
+        </table>
           <div>{item.name}</div>
           <div>{item.price}</div>
+          <div>{item.quantity}</div>
           <div>{item.totalPrice}</div>
           <div onClick={() => {
                 let newArr = [...cart]

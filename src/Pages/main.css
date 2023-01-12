@@ -5,6 +5,9 @@ body{
   .titel-row{
     display:block;
   }
+
+
+
   #header-img{
     border-radius: 50%;
     width:30%;
@@ -104,3 +107,7 @@ body{
   #products, #why, #shipping{
     padding: 75px 20px 10px 20px;
   } */
+
+  #foods {
+    margin-top: 180px;
+  }
