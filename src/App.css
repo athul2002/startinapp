@@ -36,7 +36,24 @@
     transform: rotate(360deg);
   }
 } 
+
+#parent {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 #nav-bar{
   margin-bottom: 500px;
 }
+
+.nav-link {
+  font-size: 1em;
+}
  
+footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

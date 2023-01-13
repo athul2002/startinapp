@@ -4,6 +4,9 @@ import './App.css';
 import Main from './Pages/main';
 import Cart from './Pages/cart';
 import {BrowserRouter,Routes,Route, Link} from "react-router-dom";
+import phoneIcon from '../src/Pages/phone.svg'
+import mailIcon from '../src/Pages/mail.svg'
+
 function App() {
   const [cart, setCart] = useState ( () => {
     const savedItem = localStorage.getItem('Cart');
@@ -17,11 +20,11 @@ function App() {
 
 
   return (
-    <>
+    <div id="parent">
         {/* <header id="header"> */}
     <nav id="nav-bar">
-      <a class="nav-link" href="/">I.T.I. Dhaba</a>
-      <a class="nav-link" href="/cart">Cart</a>
+      <a className="nav-link" href="/">I.T.I. Dhaba</a>
+      <a className="nav-link" href="/cart">Cart</a>
 
 
       {/* <Link to='/'>ITI Dhaba</Link>
@@ -34,9 +37,10 @@ function App() {
     </Routes>
     </BrowserRouter>
     <footer>
-    <p>by Aman Srivastav 13-08-2018 </p>
+    <a href="tel:7025482101"><img height="20px" src={phoneIcon}/>+91 70254 82101</a>
+    <a href="mailto:adiljamal221101@gmail.com"><img height="20px" src={mailIcon}/> adiljamal221101@gmail.com</a>
     </footer>
-    </>
+    </div>
 
   );
 }

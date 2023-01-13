@@ -57,6 +57,8 @@ body{
     justify-content:space-around;
     align-items:stretch;
     flex-wrap:wrap;
+  /* background-image: url('../background.jpg'); */
+  /* width: 100%; */
   }
   .prod-pic{
     width:20vw;
@@ -110,4 +112,31 @@ body{
 
   #foods {
     margin-top: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #prev-price {
+    text-decoration: line-through;
+    color: #da3b3b;
+  }
+
+  #add-to-cart {
+    background-color: #0e0805;
+    color: #FFF;
+    padding: 5px 10px 5px 10px;
+    transition: 0.5s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  #add-to-cart :hover {
+    transform: translateY(-2px);
+  }
+
+  #closed-delivery {
+    font-size: 3em;
+    max-width: 800px;
   }
